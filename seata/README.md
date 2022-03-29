@@ -80,3 +80,5 @@ http://localhost:9090/createRollbackOrder 这个可以看到数据库更新之�
         }
 
 现在测试结果只能通过查看数据库来验证，这个也是不方便的地方
+
+要保证seata-server注册到cse之后，再启动其它微服务
