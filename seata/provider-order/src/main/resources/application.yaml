@@ -46,9 +46,6 @@ seata:
       name: ${spring.application.name}
       application: ${spring.cloud.servicecomb.discovery.appName}
       version: ${spring.cloud.servicecomb.discovery.version}
-      serverAppName: seata-server
-      allow-cross-app: true
-      serverAppVersion: 1.0.0
   service:
     vgroup-mapping:
       default_tx_group: default
