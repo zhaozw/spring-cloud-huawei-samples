@@ -16,6 +16,7 @@
 ## limitations under the License.
 ## ---------------------------------------------------------------------------
 spring:
+  env:
   application:
     name: seata-provider-order
   cloud:

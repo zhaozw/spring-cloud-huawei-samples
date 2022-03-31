@@ -43,9 +43,10 @@ seata:
     type: servicecomb
     servicecomb:
       address: ${spring.cloud.servicecomb.discovery.address}
-      name: ${spring.application.name}
-      application: ${spring.cloud.servicecomb.discovery.appName}
+      serviceName: ${spring.application.name}
+      appName: ${spring.cloud.servicecomb.discovery.appName}
       version: ${spring.cloud.servicecomb.discovery.version}
+      environment: ${spring.env}
   service:
     vgroup-mapping:
       default_tx_group: default
