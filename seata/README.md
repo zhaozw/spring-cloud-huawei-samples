@@ -23,7 +23,6 @@
 * 前提条件
 [准备CSE运行环境](../README_CN.md)
 * 下载[seata集成cse后的代码](https://github.com/zhaozw/seata/)
-* 执行mvn clean install -Dmaven.test.skip=true
 * 安装mysql  例子中的用户名和密码分别是root 123456，如果不同需要做相应修改，seata-server和三个provider都有数据库配置
 * 导入etc下面的sql文件到数据库
 * 在cse上创建创建配置，内容在etc/seata.properties（如果seata-server和客户端不是一个应用的话，需要分别配置或者通过自定义配置确保都能获取到配置）
