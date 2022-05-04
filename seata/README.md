@@ -23,7 +23,6 @@
 * 前提条件
 [准备CSE运行环境](../README_CN.md)
 * 下载[seata集成cse后的代码](https://github.com/zhaozw/seata/)
-* 执行mvn clean install -Dmaven.test.skip=true
 * 安装mysql  例子中的用户名和密码分别是root 123456，如果不同需要做相应修改，seata-server和三个provider都有数据库配置
 * 导入etc下面的sql文件到数据库
 * 在cse上创建创建配置，内容在etc/seata.properties（如果seata-server和客户端不是一个应用的话，需要分别配置或者通过自定义配置确保都能获取到配置）
@@ -71,7 +70,7 @@ http://localhost:9090/createSuccessOrder 这个可以看到数据库更新了。
 http://localhost:9090/createRollbackOrder 这个可以看到数据库更新之后又被回滚了。
 
 测试中可能遇到的问题
-启动provider的时候报错，类似找不到servicecomb配置什么的，这个可能是由于seata官方经常会上次最新的snapshot版本到仓库，类似seata-all-1.5.0-SNAPSHOT-xxxx日期.jar，然后就会莫名其妙的引用带日期的版本，包括seata-server执行mvn clean install -Dmaven.test.skip=true的时候也经常会出现引用错误的版本问题，不知道如何禁止或避免，我的方法是如果有问题就，针对seata-config-servicecomb seata-config-core seata-discovery-servicecomb seata-all seata-spring-autoconfigure-core 按顺序执行一遍就好了
+启动provider的时候报错，类似找不到servicecomb配置什么的，这个可能是由于seata官方经常会上次最新的snapshot版本到仓库，类似seata-all-1.5.0-SNAPSHOT-xxxx日期.jar，这个需要把maven的work offline选中，否则每次都需要重新生成，需要费很多时间。
 
 测试过程中遇到的问题，之前用Feign的demo可以通过sleep模拟超时如何报错，但是在这个例子测试的时候，不会超时，会一直等待，不知道哪里可以设置，所以只通过直接抛出异常来触发回滚
 
