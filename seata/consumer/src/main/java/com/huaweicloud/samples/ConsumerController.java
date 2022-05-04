@@ -17,15 +17,15 @@
 
 package com.huaweicloud.samples;
 
-import com.huaweicloud.samples.domain.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
+
+import com.huaweicloud.samples.domain.Order;
 
 @RestController
 public class ConsumerController {
@@ -36,22 +36,22 @@ public class ConsumerController {
   @GetMapping("/createSuccessOrder")
   public String createSuccessOrder() {
     Order order = new Order();
-    order.setProductId((long)1);
-    order.setUserId((long)1);
-    order.setCount(10);
+    order.setProductId(1L);
+    order.setUserId(1L);
+    order.setCount(10L);
     order.setMoney(new BigDecimal(200.00));
-    order.setStatus(1);
+    order.setStatus(1L);
     HttpEntity<Order> request = new HttpEntity<>(order);
     return restTemplate.postForObject("http://seata-provider-order/createSuccessOrder",request, String.class);
   }
   @GetMapping("/createRollbackOrder")
   public String createRollbackOrder() {
     Order order = new Order();
-    order.setProductId((long)1);
-    order.setUserId((long)1);
-    order.setCount(10);
+    order.setProductId(1L);
+    order.setUserId(1L);
+    order.setCount(10L);
     order.setMoney(new BigDecimal(200.00));
-    order.setStatus(1);
+    order.setStatus(1L);
     HttpEntity<Order> request = new HttpEntity<>(order);
     return restTemplate.postForObject("http://seata-provider-order/createRollbackOrder",request, String.class);
   }

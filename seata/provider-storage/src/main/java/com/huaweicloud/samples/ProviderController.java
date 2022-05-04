@@ -17,6 +17,7 @@
 
 package com.huaweicloud.samples;
 
+import com.huaweicloud.samples.domain.Storage;
 import com.huaweicloud.samples.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,5 +33,10 @@ public class ProviderController {
   public String decrease(@RequestParam("productId") Long productId, @RequestParam("count") Integer count) {
     storageService.decrease(productId, count);
     return "1";
+  }
+
+  @GetMapping("/getStorage")
+  public Storage getStorage(@RequestParam("productId") Long productId) {
+    return storageService.getStorage(productId);
   }
 }

@@ -17,6 +17,7 @@
 
 package com.huaweicloud.samples;
 
+import com.huaweicloud.samples.domain.Account;
 import com.huaweicloud.samples.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,5 +35,10 @@ public class ProviderController {
   public String decrease(@RequestParam("userId") Long userId,@RequestParam("money") BigDecimal money,@RequestParam("success") boolean success) {
     accountService.decrease(userId,money,success);
     return "1";
+  }
+
+  @GetMapping("/getAccount")
+  public Account getAccount(@RequestParam("userId") Long userId) {
+    return accountService.getAccount(userId);
   }
 }

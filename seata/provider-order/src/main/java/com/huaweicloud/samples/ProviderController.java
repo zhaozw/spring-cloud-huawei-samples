@@ -17,13 +17,13 @@
 
 package com.huaweicloud.samples;
 
+import com.alibaba.fastjson.JSONObject;
+import com.huaweicloud.samples.domain.AccountStorage;
 import com.huaweicloud.samples.domain.Order;
 import com.huaweicloud.samples.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -33,13 +33,27 @@ public class ProviderController {
 
   @PostMapping("/createSuccessOrder")
   public String createSuccessOrder(@RequestBody Order order) {
+    AccountStorage before = orderService.getAccountStorage(order.getUserId(),order.getProductId());
     orderService.createSuccessOrder(order,true);
-    return "success";
+    AccountStorage after = orderService.getAccountStorage(order.getUserId(),order.getProductId());
+    JSONObject jo = new JSONObject();
+    jo.put("before",before);
+    jo.put("after",after);
+    return jo.toJSONString();
   }
 
   @PostMapping("/createRollbackOrder")
   public String createRollbackOrder(@RequestBody Order order) {
-    orderService.createSuccessOrder(order,false);
-    return "failed";
+    AccountStorage before = orderService.getAccountStorage(order.getUserId(),order.getProductId());
+    try{
+      orderService.createSuccessOrder(order,false);
+    }catch (Exception e){
+
+    }
+    AccountStorage after = orderService.getAccountStorage(order.getUserId(),order.getProductId());
+    JSONObject jo = new JSONObject();
+    jo.put("before",before);
+    jo.put("after",after);
+    return jo.toJSONString();
   }
 }

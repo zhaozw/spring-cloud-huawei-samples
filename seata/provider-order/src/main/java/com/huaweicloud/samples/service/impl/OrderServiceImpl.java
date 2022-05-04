@@ -1,7 +1,10 @@
 package com.huaweicloud.samples.service.impl;
 
 import com.huaweicloud.samples.dao.OrderDao;
+import com.huaweicloud.samples.domain.Account;
+import com.huaweicloud.samples.domain.AccountStorage;
 import com.huaweicloud.samples.domain.Order;
+import com.huaweicloud.samples.domain.Storage;
 import com.huaweicloud.samples.service.OrderService;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.slf4j.Logger;
@@ -37,7 +40,8 @@ public class OrderServiceImpl implements OrderService {
         }
         log.info("------------->订单微服务开始调用库存,做扣减end");
         //3 扣减账户
-        log.info("------------->订单微服务开始调用账户,做扣减Money");result = restTemplate.getForObject("http://seata-provider-account/decrease?userId={1}&money={2}&success={3}", String.class, order.getUserId(), order.getMoney(),success);
+        log.info("------------->订单微服务开始调用账户,做扣减Money");
+        result = restTemplate.getForObject("http://seata-provider-account/decrease?userId={1}&money={2}&success={3}", String.class, order.getUserId(), order.getMoney(),success);
         log.info("------------->" + result);
         if (!result.equals("1")){
             throw new  RuntimeException("扣减账户失败");
@@ -50,5 +54,13 @@ public class OrderServiceImpl implements OrderService {
         log.info("------------->修改订单状态结束");
 
         log.info("------------->下订单结束了");
+    }
+
+    @Override public AccountStorage getAccountStorage(Long userId, Long productId) {
+        Account account = restTemplate.getForObject("http://seata-provider-account/getAccount?userId={1}", Account.class, userId);
+
+        Storage storage = restTemplate.getForObject("http://seata-provider-storage/getStorage?productId={1}", Storage.class, productId);
+
+        return new AccountStorage(account,storage);
     }
 }

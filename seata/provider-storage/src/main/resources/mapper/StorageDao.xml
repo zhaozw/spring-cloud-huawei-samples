@@ -17,4 +17,10 @@
         set used =used + #{count},residue=residue - #{count}
         where product_id=#{productId};
     </update>
+
+    <!--获取库存-->
+    <select id="getStorageByProductId" resultType="com.huaweicloud.samples.domain.Storage" parameterType="long">
+        select * from t_storage
+        where product_id=#{productId};
+    </select>
 </mapper>

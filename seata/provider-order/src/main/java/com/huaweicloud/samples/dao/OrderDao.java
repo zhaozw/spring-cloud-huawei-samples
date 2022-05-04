@@ -1,8 +1,9 @@
 package com.huaweicloud.samples.dao;
 
-import com.huaweicloud.samples.domain.Order;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import com.huaweicloud.samples.domain.Order;
 
 @Mapper
 public interface OrderDao {

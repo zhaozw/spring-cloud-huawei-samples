@@ -42,6 +42,11 @@
       <groupId>com.huaweicloud</groupId>
       <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.huaweicloud.samples</groupId>
+      <artifactId>common</artifactId>
+      <version>${project.version}</version>
+    </dependency>
   </dependencies>
 
   <build>

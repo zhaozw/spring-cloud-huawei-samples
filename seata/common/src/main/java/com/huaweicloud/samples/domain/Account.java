@@ -1,12 +1,14 @@
 package com.huaweicloud.samples.domain;
 
-public class Account {
+import java.io.Serializable;
+
+public class Account implements Serializable {
 
     private Long id;
     private Long userId;
-    private Integer total;
-    private Integer used;
-    private Integer residue;
+    private Long total;
+    private Long used;
+    private Long residue;
 
     public Long getId() {
         return id;
@@ -24,27 +26,27 @@ public class Account {
         this.userId = userId;
     }
 
-    public Integer getTotal() {
+    public Long getTotal() {
         return total;
     }
 
-    public void setTotal(Integer total) {
+    public void setTotal(Long total) {
         this.total = total;
     }
 
-    public Integer getUsed() {
+    public Long getUsed() {
         return used;
     }
 
-    public void setUsed(Integer used) {
+    public void setUsed(Long used) {
         this.used = used;
     }
 
-    public Integer getResidue() {
+    public Long getResidue() {
         return residue;
     }
 
-    public void setResidue(Integer residue) {
+    public void setResidue(Long residue) {
         this.residue = residue;
     }
 }

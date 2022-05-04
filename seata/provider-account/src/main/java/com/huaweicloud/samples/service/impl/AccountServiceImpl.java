@@ -1,6 +1,7 @@
 package com.huaweicloud.samples.service.impl;
 
 import com.huaweicloud.samples.dao.AccountDao;
+import com.huaweicloud.samples.domain.Account;
 import com.huaweicloud.samples.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,11 @@ public class AccountServiceImpl implements AccountService {
         //int a = 1/0;
         return accountDao.decrease(userId, money);
     }
+
+    @Override public Account getAccount(Long userId) {
+        return accountDao.getAccountByUserId(userId);
+    }
+
     @Autowired
     public void setAccountDao(AccountDao accountDao) {
         this.accountDao = accountDao;

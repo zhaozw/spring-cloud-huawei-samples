@@ -40,7 +40,7 @@ spring:
         accessKey: your ak
         secretKey: your sk
         akskCustomCipher: default
-        project: cn-south-1
+        project: default
 
 ## rate limiting configuration
 servicecomb:

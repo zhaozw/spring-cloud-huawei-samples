@@ -8,9 +8,9 @@ public class Order implements Serializable {
     private Long id;
     private Long userId;
     private Long productId;
-    private Integer count;
+    private Long count;
     private BigDecimal money;
-    private Integer status;
+    private Long status;
 
     public Long getId() {
         return id;
@@ -36,11 +36,11 @@ public class Order implements Serializable {
         this.productId = productId;
     }
 
-    public Integer getCount() {
+    public Long getCount() {
         return count;
     }
 
-    public void setCount(Integer count) {
+    public void setCount(Long count) {
         this.count = count;
     }
 
@@ -52,11 +52,11 @@ public class Order implements Serializable {
         this.money = money;
     }
 
-    public Integer getStatus() {
+    public Long getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(Long status) {
         this.status = status;
     }
 }
